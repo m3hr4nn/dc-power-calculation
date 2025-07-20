@@ -9,6 +9,10 @@
     <div class="container">
         <h1>Datacenter Power Calculator</h1>
         <div class="upload-section">
+            <div class="template-buttons">
+                <button id="downloadInfraTemplate">Download Infrastructure Template</button>
+                <button id="downloadITTemplate">Download IT Devices Template</button>
+            </div>
             <label>Infrastructure Devices CSV:
                 <input type="file" id="infraFile" accept=".csv">
             </label>
@@ -22,7 +26,7 @@
         <canvas id="powerChart"></canvas>
         <button id="exportBtn" style="display:none;">Export Summary as CSV</button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="chart.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

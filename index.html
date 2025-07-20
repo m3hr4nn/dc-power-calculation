@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.3.1/html-docx.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/papaparse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -94,6 +95,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="chart-section">
+                        <h4>Power Consumption Overview</h4>
+                        <canvas id="powerChart" style="max-height: 300px;"></canvas>
                     </div>
 
                     <div class="detailed-results">

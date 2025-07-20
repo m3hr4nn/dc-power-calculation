@@ -22,6 +22,23 @@ function downloadCSV(content, filename) {
     URL.revokeObjectURL(url);
 }
 
+// Download template CSVs
+document.getElementById('downloadInfraTemplate').onclick = function() {
+    const csv = [
+        'device_brand,model,type_of_device,maximum_power_usage_watts,nominal_power_usage_watts,weight_kg,count',
+        'Schneider Electric,InRow RP DX,Precision Cooling,12000,8500,220,8'
+    ].join('\n');
+    downloadCSV(csv, 'infrastructure-devices-template.csv');
+};
+
+document.getElementById('downloadITTemplate').onclick = function() {
+    const csv = [
+        'device_brand,model,type_of_ne,maximum_power_usage_watts,nominal_power_usage_watts,count',
+        'Cisco,ASR-9010,Router,4500,3800,2'
+    ].join('\n');
+    downloadCSV(csv, 'IT-devices-template.csv');
+};
+
 // Main
 let infraData = [], itData = [];
 
@@ -93,12 +110,22 @@ document.getElementById('processBtn').onclick = async function() {
             datasets: [{
                 label: 'Total Power by Brand (W)',
                 data: Object.values(brandPower),
-                backgroundColor: '#2a3f54'
+                backgroundColor: [
+                    '#00e6ff', '#ff0055', '#00e6ff', '#ff0055', '#00e6ff', '#ff0055'
+                ]
             }]
         },
         options: {
             responsive: true,
-            plugins: { legend: { display: false } }
+            plugins: { 
+                legend: { 
+                    labels: { color: '#00e6ff', font: { size: 16 } }
+                } 
+            },
+            scales: {
+                x: { ticks: { color: '#00e6ff' }, grid: { color: '#00e6ff33' } },
+                y: { ticks: { color: '#00e6ff' }, grid: { color: '#00e6ff33' } }
+            }
         }
     });
 

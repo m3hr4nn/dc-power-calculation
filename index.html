@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datacenter Power Consumption Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html-docx-js/0.3.1/html-docx.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/papaparse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Datacenter Power Consumption Calculator</h1>
+            <p>Calculate power requirements for your datacenter infrastructure</p>
+        </header>
+
+        <div class="upload-section">
+            <div class="upload-card">
+                <h3>📊 IT Devices</h3>
+                <input type="file" id="itDevicesFile" accept=".csv" />
+                <label for="itDevicesFile" class="file-label">Upload IT Devices CSV</label>
+                <button onclick="downloadITTemplate()" class="template-btn">Download Template</button>
+                <div id="itStatus" class="status"></div>
+            </div>
+
+            <div class="upload-card">
+                <h3>🏢 Infrastructure Devices</h3>
+                <input type="file" id="infraDevicesFile" accept=".csv" />
+                <label for="infraDevicesFile" class="file-label">Upload Infrastructure CSV</label>
+                <button onclick="downloadInfraTemplate()" class="template-btn">Download Template</button>
+                <div id="infraStatus" class="status"></div>
+            </div>
+        </div>
+
+        <div class="calculator-section" id="calculatorSection" style="display: none;">
+            <div class="device-selection">
+                <div class="selection-panel">
+                    <h3>🖥️ IT Equipment Selection</h3>
+                    <div id="itDevicesList" class="devices-list"></div>
+                </div>
+
+                <div class="selection-panel">
+                    <h3>🏗️ Infrastructure Equipment Selection</h3>
+                    <div id="infraDevicesList" class="devices-list"></div>
+                </div>
+            </div>
+
+            <div class="results-section">
+                <button onclick="calculatePower()" class="calculate-btn">Calculate Power Consumption</button>
+                
+                <div id="resultsContainer" class="results-container" style="display: none;">
+                    <div class="results-summary">
+                        <div class="summary-card it-summary">
+                            <h4>IT Equipment Power</h4>
+                            <div class="power-values">
+                                <div class="power-item">
+                                    <span class="label">Nominal:</span>
+                                    <span id="itNominal" class="value">0 kW</span>
+                                </div>
+                                <div class="power-item">
+                                    <span class="label">Maximum:</span>
+                                    <span id="itMaximum" class="value">0 kW</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-card infra-summary">
+                            <h4>Infrastructure Power</h4>
+                            <div class="power-values">
+                                <div class="power-item">
+                                    <span class="label">Nominal:</span>
+                                    <span id="infraNominal" class="value">0 kW</span>
+                                </div>
+                                <div class="power-item">
+                                    <span class="label">Maximum:</span>
+                                    <span id="infraMaximum" class="value">0 kW</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="summary-card total-summary">
+                            <h4>Total Power Consumption</h4>
+                            <div class="power-values">
+                                <div class="power-item">
+                                    <span class="label">Nominal:</span>
+                                    <span id="totalNominal" class="value">0 kW</span>
+                                </div>
+                                <div class="power-item">
+                                    <span class="label">Maximum:</span>
+                                    <span id="totalMaximum" class="value">0 kW</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detailed-results">
+                        <h4>Detailed Breakdown</h4>
+                        <div id="detailedTable"></div>
+                    </div>
+
+                    <div class="export-buttons">
+                        <button onclick="exportToPDF()" class="export-btn pdf-btn">📄 Export to PDF</button>
+                        <button onclick="exportToWord()" class="export-btn word-btn">📝 Export to Word</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
